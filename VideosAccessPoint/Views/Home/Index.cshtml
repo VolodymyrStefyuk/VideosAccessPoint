@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+
+    @model IQueryable<VideoInfo>
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    @{ if (!User.Identity.IsAuthenticated)
+        {
+            <a class="RefButton" href="ACCOUNT/LOGIN">Ввійти</a>
+            <a class="RefButton" href="ACCOUNT/register">Регістрація</a>
+        }}
+</div>

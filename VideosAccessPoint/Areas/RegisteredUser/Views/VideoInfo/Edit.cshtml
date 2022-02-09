@@ -1,0 +1,38 @@
+﻿@model VideoInfo
+@{
+    string strTitle = "Редагувати";
+    ViewBag.Title = strTitle;
+}
+
+<script src="~/js/ckeditor/ckeditor.js"></script>
+
+<div>
+    <h2>@strTitle</h2>
+    <div>
+        <form asp-area="RegisteredUser" asp-controller="VideoInfo" asp-action="Edit" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="DateAdded" />
+            <input type="hidden" asp-for="UserName" />
+            
+            <div asp-validation-summary="All"></div>
+            <div class="div-box">
+                <label asp-for="Title"></label>
+                <input asp-for="Title" />
+                <span asp-validation-for="Title"></span>
+            </div>
+
+            <div class="div-box">
+                <label asp-for="VideoLink"></label>
+                <textarea asp-for="VideoLink"></textarea>
+                <span asp-validation-for="VideoLink"></span>
+            </div>
+            <div class="div-box">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description"></textarea>
+                <span asp-validation-for="Description"></span>
+            </div>
+
+            <input type="submit" value="Зберегти" />
+        </form>
+    </div>
+</div>

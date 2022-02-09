@@ -1,0 +1,28 @@
+﻿@model RegisterViewModel
+<div>
+    <h1>Регістрація</h1>
+    <div class="div-box">
+        <form asp-area="" asp-controller="Account" asp-action="Register" method="post">
+            <div asp-validation-summary="All"></div>
+            <div>
+                <label asp-for="UserName"></label><br />
+                <input asp-for="UserName" />
+                <span asp-validation-for="UserName"></span>
+            </div>
+            <div>
+                <label asp-for="Password"></label>
+                <input asp-for="Password" />
+                <span asp-validation-for="Password"></span><br />
+            </div>
+            <div>
+                <label asp-for="PasswordConfirm"></label>
+                <input asp-for="PasswordConfirm" />
+                <span asp-validation-for="PasswordConfirm"></span><br />
+            </div>
+
+            <div>
+                <input type="submit" value="Зарейструватися" />
+            </div>
+        </form>
+    </div>
+</div>
