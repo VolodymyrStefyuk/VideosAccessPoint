@@ -12,7 +12,8 @@
         <form asp-area="RegisteredUser" asp-controller="VideoInfo" asp-action="Edit" method="post" enctype="multipart/form-data">
             <input type="hidden" asp-for="Id" />
             <input type="hidden" asp-for="DateAdded" />
-            
+            <input type="hidden" asp-for="UserName" />
+
             <div asp-validation-summary="All"></div>
             <div class="div-box">
                 <label asp-for="Title"></label>
@@ -29,6 +30,12 @@
                 <label asp-for="Description"></label>
                 <textarea asp-for="Description"></textarea>
                 <span asp-validation-for="Description"></span>
+            </div>
+
+            <div class="div-box">
+                <label asp-for="Genre"></label>
+                <textarea asp-for="Genre"></textarea>
+                <span asp-validation-for="Genre"></span>
             </div>
 
             <input type="submit" value="Зберегти" />

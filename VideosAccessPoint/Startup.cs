@@ -33,7 +33,6 @@ namespace VideosAccessPoint
             Configuration.Bind("Project", new Config());
 
             services.AddTransient<IVideoInfoRepository, EFVideoInfoRepository>();
-            services.AddTransient<IGenreInfoRepository, EFGenreInfoRepository>();
             services.AddTransient<DataManager>();
             
 
@@ -99,7 +98,6 @@ namespace VideosAccessPoint
                     "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute("default",
                     "{controller=Home}/{action=Index}/{id?}");
-
             });
         }
     }

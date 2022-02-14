@@ -49,7 +49,7 @@ namespace VideosAccessPoint.Migrations
                         new
                         {
                             Id = "44546e06-8719-4ad8-b88a-f271ae9d6eab",
-                            ConcurrencyStamp = "78ab87ba-e625-4572-b7e7-92c501d25849",
+                            ConcurrencyStamp = "f6fbb7ea-1abb-4e29-8ef4-023a95bd95a3",
                             Name = "RegisteredUser",
                             NormalizedName = "REGISTEREDUSER"
                         });
@@ -148,11 +148,11 @@ namespace VideosAccessPoint.Migrations
                         {
                             Id = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a7f2b3df-fbd0-4c50-a8b2-30b6f807b03a",
+                            ConcurrencyStamp = "989bd11a-d2e8-4e76-b58f-551093e6762b",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAd3xIwHXvROx21M/2a4Qkf2aKbQX6hthqkxDxIxffhWSHKdXrVZLqmqe5+DTdLTeQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEA/j0tWTzBdJ4TcNE8CbcPUtFSIiADlb2keaj3bgVBzn5kPIERcmvb3o8Abazb32jA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -247,24 +247,6 @@ namespace VideosAccessPoint.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("VideosAccessPoint.Domain.Entities.GenreInfo", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("GenresInfo");
-                });
-
             modelBuilder.Entity("VideosAccessPoint.Domain.Entities.VideoInfo", b =>
                 {
                     b.Property<Guid>("Id")
@@ -277,8 +259,8 @@ namespace VideosAccessPoint.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("GenreId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Genre")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -293,8 +275,6 @@ namespace VideosAccessPoint.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("GenreId");
 
                     b.ToTable("VideosInfo");
                 });
@@ -348,20 +328,6 @@ namespace VideosAccessPoint.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("VideosAccessPoint.Domain.Entities.VideoInfo", b =>
-                {
-                    b.HasOne("VideosAccessPoint.Domain.Entities.GenreInfo", "Genre")
-                        .WithMany("VideosId")
-                        .HasForeignKey("GenreId");
-
-                    b.Navigation("Genre");
-                });
-
-            modelBuilder.Entity("VideosAccessPoint.Domain.Entities.GenreInfo", b =>
-                {
-                    b.Navigation("VideosId");
                 });
 #pragma warning restore 612, 618
         }

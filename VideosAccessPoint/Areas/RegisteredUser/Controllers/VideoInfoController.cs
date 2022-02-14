@@ -39,6 +39,5 @@ namespace VideosAccessPoint.Areas.RegisteredUser.Controllers
             return View(_dataManager.VideoInfo.GetVideosInfo());
         }
 
-
     }
 }

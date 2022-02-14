@@ -8,8 +8,8 @@ namespace VideosAccessPoint.Domain.Entities
 {
     public class VideoInfo : EntityBase
     {
-        public VideoInfo() 
-        { 
+        public VideoInfo()
+        {
             DateAdded = DateTime.UtcNow;
         }
 
@@ -33,6 +33,6 @@ namespace VideosAccessPoint.Domain.Entities
         public DateTime DateAdded { get; set; }
 
         [Display(Name = "жанр ")]
-        public GenreInfo Genre { get; set; }
+        public String Genre { get; set; }
     }
 }

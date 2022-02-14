@@ -16,15 +16,37 @@ namespace VideosAccessPoint.Domain.Repositories.EntityFramework
         {
             _context = context;
         }
-        
+
+        public IQueryable<VideoInfo> GetLast100Videos()
+        {
+            return _context.VideosInfo.Take(100);
+        }
+
+        public IQueryable<VideoInfo> GetLast100VideosByGenre(string genre)
+        {
+            return _context.VideosInfo.Where(x => x.Genre == genre).Take(100);
+        }
+
         public VideoInfo GetVideoInfoById(Guid id)
         {
             return _context.VideosInfo.FirstOrDefault(x => x.Id == id);
         }
 
+        public VideoInfo GetVideoInfoByTitle(string title)
+        {
+            return _context.VideosInfo.FirstOrDefault(x => x.Title == title);
+        }
+
         public IQueryable<VideoInfo> GetVideosInfo()
         {
             return _context.VideosInfo;
+        }
+
+        public IQueryable<VideoInfo> GetVideosOverTime(DateTime startDate, DateTime endDate = default)
+        {
+            if (endDate == default) 
+                endDate = DateTime.UtcNow;
+            return _context.VideosInfo.Where(x => x.DateAdded > startDate && x.DateAdded < endDate);
         }
 
         public void SaveVideoInfo(VideoInfo videoInfo)

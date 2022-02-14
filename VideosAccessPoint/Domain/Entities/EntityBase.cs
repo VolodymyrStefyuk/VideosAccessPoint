@@ -15,6 +15,5 @@ namespace VideosAccessPoint.Domain.Entities
         public virtual string Title { get; set; }
         [Display(Name = "Опис")]
         public virtual string Description { get; set; }
-
     }
 }

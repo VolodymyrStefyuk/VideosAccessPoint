@@ -13,7 +13,6 @@ namespace VideosAccessPoint.Models
         public string UserName { get; set; }
 
         [Required]
-      //  [UIHint("password")]
         [Display(Name = "Пароль")]
         [DataType(DataType.Password)]
         public string Password { get; set; }

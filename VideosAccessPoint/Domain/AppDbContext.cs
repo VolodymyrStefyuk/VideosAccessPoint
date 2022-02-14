@@ -15,7 +15,6 @@ namespace VideosAccessPoint.Domain
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public DbSet<VideoInfo> VideosInfo { get; set; }
-        public DbSet<GenreInfo> GenresInfo { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -40,7 +39,6 @@ namespace VideosAccessPoint.Domain
                 RoleId = "44546e06-8719-4ad8-b88a-f271ae9d6eab",
                 UserId = "3b62472e-4f66-49fa-a20f-e7685b9565d8"
             });
-
         }
     }
 }

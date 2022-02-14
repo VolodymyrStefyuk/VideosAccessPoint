@@ -41,7 +41,7 @@ namespace VideosAccessPoint.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, false);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "RegisteredUser");
                 }
                 else
                 {
@@ -74,7 +74,7 @@ namespace VideosAccessPoint.Controllers
                         await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
                 if (result.Succeeded)
                     {
-                        return Redirect(returnUrl ?? "/");
+                        return Redirect(returnUrl ?? "../RegisteredUser");
                     }
                  }
                 ModelState.AddModelError(nameof(LoginViewModel.UserName), "Неправильний логін або пароль");
@@ -87,7 +87,5 @@ namespace VideosAccessPoint.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
-
-
     }
 }

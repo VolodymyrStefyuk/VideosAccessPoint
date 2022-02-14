@@ -1,24 +1,32 @@
-﻿@model IQueryable<VideoInfo>
+﻿@model VideoGenreViewModel
 <h1>    Registered user</h1>
 
 <div>
     <h1>Videos</h1>
     <div class="container">
 
-        @if (Model.Any())
-        {
-            @foreach (VideoInfo entity in Model)
-            {
-        <div>
-            <p>@entity.Title</p>
-            <p>@entity.Description</p>
-            <p>@entity.UserName</p>
-        </div>
-            }
-        }
+        <p><a asp-area="RegisteredUser" asp-action="Edit">Create new</a></p>
+        <form asp-controller="Home" asp-action="Index" >
 
-        <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
-            <input type="submit" value="Вийти" />
+            <p>
+                <select asp-for="VideoGenre" asp-items="Model.Genres">
+                    <option value="">all</option>
+                </select>
+
+
+                Title: <input type="text" name="SearchString" value="" />
+                       <input type="submit"  value="Filter" />
+            </p>
         </form>
+
+      
+            @foreach (VideoInfo entity in Model.Videos)
+            {
+                <div>
+                    <p>@entity.Title</p>
+                    <p>@entity.Description</p>
+                    <p>@entity.UserName</p>
+                </div>
+            }
     </div>
 </div>

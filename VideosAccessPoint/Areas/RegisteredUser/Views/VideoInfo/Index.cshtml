@@ -2,7 +2,21 @@
 <h1>    Registered user</h1>
 
 <div>
-    <h1>Videos</h1>
-    <div class="container"> 
+    <h1>Videos index</h1>
+    <div class="container">
+        
+
+        @if (Model.Any())
+        {
+            @foreach (VideoInfo entity in Model)
+            {
+                <div>
+                    <p>@entity.Title</p>
+                    <p>@entity.Description</p>
+                    <p>@entity.UserName</p>
+                </div>
+            }
+        }
+
     </div>
 </div>

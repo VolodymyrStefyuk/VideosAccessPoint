@@ -9,12 +9,10 @@ namespace VideosAccessPoint.Domain
     public class DataManager
     {
         public IVideoInfoRepository VideoInfo { get; set; }
-        public IGenreInfoRepository GenreInfo { get; set; }
 
-        public DataManager(IVideoInfoRepository videoInfo, IGenreInfoRepository genreInfo)
+        public DataManager(IVideoInfoRepository videoInfo)
         {
             VideoInfo = videoInfo;
-            GenreInfo = genreInfo;
         }
     }
 }

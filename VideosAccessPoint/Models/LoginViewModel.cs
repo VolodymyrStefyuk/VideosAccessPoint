@@ -9,14 +9,14 @@ namespace VideosAccessPoint.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name ="логін")]
+        [Display(Name ="Логін")]
         public string UserName { get; set; }
         [Required]
         [UIHint("password")]
-        [Display(Name = "пароль")]
+        [Display(Name = "Пароль")]
         public string Password { get; set; }
 
-        [Display(Name = "запам'ятати мене?")]
+        [Display(Name = "Запам'ятати мене")]
         public bool RememberMe { get; set; }
     }
 }

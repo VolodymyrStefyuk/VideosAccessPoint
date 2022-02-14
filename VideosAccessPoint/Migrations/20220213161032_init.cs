@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace VideosAccessPoint.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,16 +47,20 @@ namespace VideosAccessPoint.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "GenresInfo",
+                name: "VideosInfo",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    VideoLink = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DateAdded = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Genre = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GenresInfo", x => x.Id);
+                    table.PrimaryKey("PK_VideosInfo", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -165,38 +169,15 @@ namespace VideosAccessPoint.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "VideosInfo",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    VideoLink = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateAdded = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    GenreId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_VideosInfo", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_VideosInfo_GenresInfo_GenreId",
-                        column: x => x.GenreId,
-                        principalTable: "GenresInfo",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "44546e06-8719-4ad8-b88a-f271ae9d6eab", "78ab87ba-e625-4572-b7e7-92c501d25849", "RegisteredUser", "REGISTEREDUSER" });
+                values: new object[] { "44546e06-8719-4ad8-b88a-f271ae9d6eab", "f6fbb7ea-1abb-4e29-8ef4-023a95bd95a3", "RegisteredUser", "REGISTEREDUSER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "3b62472e-4f66-49fa-a20f-e7685b9565d8", 0, "a7f2b3df-fbd0-4c50-a8b2-30b6f807b03a", null, false, false, null, null, "ADMIN", "AQAAAAEAACcQAAAAEAd3xIwHXvROx21M/2a4Qkf2aKbQX6hthqkxDxIxffhWSHKdXrVZLqmqe5+DTdLTeQ==", null, false, "", false, "admin" });
+                values: new object[] { "3b62472e-4f66-49fa-a20f-e7685b9565d8", 0, "989bd11a-d2e8-4e76-b58f-551093e6762b", null, false, false, null, null, "ADMIN", "AQAAAAEAACcQAAAAEA/j0tWTzBdJ4TcNE8CbcPUtFSIiADlb2keaj3bgVBzn5kPIERcmvb3o8Abazb32jA==", null, false, "", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -241,11 +222,6 @@ namespace VideosAccessPoint.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_VideosInfo_GenreId",
-                table: "VideosInfo",
-                column: "GenreId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -273,9 +249,6 @@ namespace VideosAccessPoint.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "GenresInfo");
         }
     }
 }
