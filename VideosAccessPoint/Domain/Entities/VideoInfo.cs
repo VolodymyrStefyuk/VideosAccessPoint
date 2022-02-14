@@ -25,14 +25,14 @@ namespace VideosAccessPoint.Domain.Entities
         public string VideoLink { get; set; }
 
         [Required]
-        [Display(Name = "Користувач, який надав інформацію про відеоролик")] 
+        [Display(Name = "Автор")] 
         public string UserName { get; set; }
 
         [Required]
-        [Display(Name = "дата завантаження")]
+        [Display(Name = "Дата завантаження")]
         public DateTime DateAdded { get; set; }
 
-        [Display(Name = "жанр ")]
+        [Display(Name = "Жанр ")]
         public String Genre { get; set; }
     }
 }

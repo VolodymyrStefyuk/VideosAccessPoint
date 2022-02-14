@@ -6,27 +6,45 @@
     <div class="container">
 
         <p><a asp-area="RegisteredUser" asp-action="Edit">Create new</a></p>
-        <form asp-controller="Home" asp-action="Index" >
+        <form asp-controller="Home" asp-action="Index">
 
             <p>
                 <select asp-for="VideoGenre" asp-items="Model.Genres">
                     <option value="">all</option>
                 </select>
 
-
                 Title: <input type="text" name="SearchString" value="" />
-                       <input type="submit"  value="Filter" />
+                <input type="submit" value="Filter" />
             </p>
         </form>
 
-      
-            @foreach (VideoInfo entity in Model.Videos)
-            {
-                <div>
-                    <p>@entity.Title</p>
-                    <p>@entity.Description</p>
-                    <p>@entity.UserName</p>
-                </div>
-            }
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Videos[0].Title)</th>
+                        <th>@Html.DisplayNameFor(model => model.Videos[0].DateAdded)</th>
+                        <th>@Html.DisplayNameFor(model => model.Videos[0].Genre)</th>
+                        <th>@Html.DisplayNameFor(model => model.Videos[0].UserName)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model.Videos)
+                    {
+                        <tr>
+                            <td> @Html.DisplayFor(model => item.Title)</td>
+                            <td> @Html.DisplayFor(model => item.DateAdded)</td>
+                            <td> @Html.DisplayFor(model => item.Genre)</td>
+                            <td> @Html.DisplayFor(model => item.UserName)</td>
+                            <td>
+                                <a href="@item.VideoLink">Клац</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
