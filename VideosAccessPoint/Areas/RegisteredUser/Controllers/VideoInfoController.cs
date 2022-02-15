@@ -18,14 +18,14 @@ namespace VideosAccessPoint.Areas.RegisteredUser.Controllers
             _dataManager = dataManager;
         }
 
-        public IActionResult Edit(Guid id)
+        public IActionResult Create(Guid id)
         {
             var entity = id == default ? new VideoInfo( User.Identity.Name) : _dataManager.VideoInfo.GetVideoInfoById(id);
             return View(entity);
         }
 
         [HttpPost]
-        public IActionResult Edit(VideoInfo model)
+        public IActionResult Create(VideoInfo model)
         {
             if (ModelState.IsValid)
             {

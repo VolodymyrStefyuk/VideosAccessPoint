@@ -24,7 +24,7 @@ namespace VideosAccessPoint.Areas.RegisteredUser.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index(string videoGenre, string searchString)
+        public async Task<IActionResult> Index(string videoGenre, string searchString, string Author, DateTime DateStart, DateTime DateEnd, bool Take100)
         {
             IQueryable<string> genreQuery = from m in _context.VideosInfo
                                                orderby m.Genre
@@ -35,6 +35,18 @@ namespace VideosAccessPoint.Areas.RegisteredUser.Controllers
 
             if (!string.IsNullOrEmpty(videoGenre))
                 videos = videos.Where(x => x.Genre == videoGenre);
+
+            if (!string.IsNullOrEmpty(Author))
+                videos = videos.Where(x => x.UserName== Author);
+
+            if (DateStart != default)
+                videos = videos.Where(x => x.DateAdded > DateStart);
+
+            if (DateEnd != default)
+                videos = videos.Where(x => x.DateAdded < DateEnd);
+
+            if (Take100 == true)
+                videos = videos.Take(100);
 
             var videoGenreVM = new VideoGenreViewModel
             {
@@ -61,6 +73,15 @@ namespace VideosAccessPoint.Areas.RegisteredUser.Controllers
             return View(model);
         }
 
+        public async Task<IActionResult> Details(Guid? id)
+        {
+            if (id == null)
+                return NotFound();
 
+            var video = await _context.VideosInfo.FirstOrDefaultAsync(v => v.Id == id);
+            if (video == null)
+                return NotFound();
+            return View(video);
+        }
     }
 }

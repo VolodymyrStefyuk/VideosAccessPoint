@@ -10,10 +10,14 @@
 
             <p>
                 <select asp-for="VideoGenre" asp-items="Model.Genres">
-                    <option value="">all</option>
+                    <option value="">Всі жанри</option>
                 </select>
 
                 Title: <input type="text" name="SearchString" value="" />
+                Автор: <input type="text" name="Author" value="" />
+                Початкова дата: <input type="date" name="DateStart" value="" />
+                Кінцева дата:<input type="date" name="DateEnd" value="" />
+                Показати остані 100:<input type="checkbox" name="Take100" value="checked" />
                 <input type="submit" value="Filter" />
             </p>
         </form>
@@ -38,8 +42,10 @@
                             <td> @Html.DisplayFor(model => item.DateAdded)</td>
                             <td> @Html.DisplayFor(model => item.Genre)</td>
                             <td> @Html.DisplayFor(model => item.UserName)</td>
+                            
                             <td>
-                                <a href="@item.VideoLink">Клац</a>
+                                <a asp-action="Details" asp-route-id="@item.Id">Деталі</a>
+                                <a href="@item.VideoLink">Переглянути</a>
                             </td>
                         </tr>
                     }
